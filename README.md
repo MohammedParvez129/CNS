@@ -27,8 +27,49 @@ becomes C. To change a message back, each letter is replaced by the one three be
 ### STEP-5: Display the cipher text obtained above.
 
 
-PROGRAM :-
+## PROGRAM :-
 
+```C
+#include <stdio.h>
+#include <stdlib.h>
+ 
+void caesarEncrypt(char *text, int key) {
+   for (int i = 0; text[i] != '\0'; i++) { char c = text[i];
+    if (c >= 'A' && c <= 'Z') {
+    text[i] = ((c - 'A' + key) % 26 + 26) % 26 + 'A';
+    }
+    else if (c >= 'a' && c <= 'z') {
+        text[i] = ((c - 'a' + key) % 26 + 26) % 26 + 'a';
+    }
+    }
+}
 
+void caesarDecrypt(char *text, int key) {
+caesarEncrypt(text, -key);
+}
 
-OUTPUT :-
+int main() {
+char message[100];
+int key;
+
+printf("Enter the message to encrypt: ");
+fgets(message, sizeof(message), stdin);  
+printf("Enter the Caesar Cipher key (an integer): ");
+scanf("%d", &key);
+ 
+caesarEncrypt(message, key);
+printf("Encrypted Message: %s", message);
+
+ 
+caesarDecrypt(message, key);
+printf("Decrypted Message: %s", message);
+return 0;
+}
+```
+
+## OUTPUT :-
+
+<img width="1022" height="210" alt="Screenshot 2025-08-13 113716" src="https://github.com/user-attachments/assets/be70143b-e251-4366-90e9-78c24b27e0c6" />
+
+## RESULT:
+The program is executed successfully
